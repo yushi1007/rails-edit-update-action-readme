@@ -18,6 +18,16 @@ class ArticlesController < ApplicationController
     @article.save
     redirect_to article_path(@article)
   end
-
   # add edit and update methods here
+  def edit
+    # edit action store the article record in an instance variable:
+    @article = Article.find(params[:id])
+    # Now that the edit view template will have access to the Article object (stored in @article)
+  end
+  
+  def update
+    @article = Article.find(params[:id])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    redirect_to article_path(@article)
+  end
 end
